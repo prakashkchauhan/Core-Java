@@ -11,7 +11,11 @@ import java.util.concurrent.TimeUnit;
 public class CallableTest {
    public static void main(String[] args) throws InterruptedException, ExecutionException {
       ExecutorService ex = Executors.newFixedThreadPool(1);
-      Future<Integer> test = ex.submit(new Runnable());
+      
+      Future<Integer> test = ex.submit(() -> {
+    	  return 1+1;
+      });
+      
       System.out.println(test.get());
       ex.awaitTermination(1L, TimeUnit.MINUTES);
    }
